@@ -6,6 +6,7 @@ void SystemInit()
 void PortB_Init()
 {
 	int x=0;
+	// Commenttttttt
 	SYSCTL_RCGCGPIO_R |= 0x02;            // 2) activate port B
   while((SYSCTL_PRGPIO_R&0x02) == 0){};
 				SYSCTL_RCGC2_R |= 0x02; // enable GPIO port b clock
