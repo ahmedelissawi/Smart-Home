@@ -1,4 +1,6 @@
 #include "tm4c123gh6pm.h"
+#include "C:/Keil/EE319Kware/inc/tm4c123gh6pm.h" 
+#include "stdint.h"
 #include "PLL.h"
 
 void PLL_Init(void){
