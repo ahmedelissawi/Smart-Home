@@ -28,31 +28,20 @@ void Servo_Init(void){
 		// PWM1_1_CMPA_R = 23500 -1; // 5% Duty Cycle
 
 		// PWM1_1_CMPA_R = 22750 -1; // 10% Duty Cycle
-	
-	
-	
-	
-	
-	
-	
-	
-	
-
-	
 	PWM1_1_CTL_R = 0x00000001;	
 	GPIO_PORTE_AFSEL_R |= 0x10;
 	GPIO_PORTE_PCTL_R = (GPIO_PORTE_PCTL_R&~(0x000F0000)) | (0x00050000);
 	GPIO_PORTE_DIR_R |= 0x10;
 	GPIO_PORTE_DEN_R |= 0x10;
-	PWM1_ENABLE_R = 0x04; // M1PWM6 (PF2)
+	PWM1_ENABLE_R = 0x04; 
 }
-void Servo_SetDutyCycle(uint8_t duty_cycle){
-	if(duty_cycle == 100){
-		PWM1_1_CMPA_R = 1;
-	} else if(duty_cycle == 0) {
-		PWM1_1_CMPA_R = 25000-2;
+void Servo_Angle(int8_t angle){
+	if(angle == 30){
+		PWM1_1_CMPA_R = 22750 -1;;
+	} else if(angle == -30) {
+		PWM1_1_CMPA_R = 23500 -1;
 	}else {
-		PWM1_1_CMPA_R = (uint16_t)(25000 * (1 - (duty_cycle / 100.0)) - 1);
+		PWM1_1_CMPA_R = 23125 -1;
 	}
 }
 
