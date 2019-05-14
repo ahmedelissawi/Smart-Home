@@ -139,6 +139,97 @@ void UART_init(int UART_no)
 		GPIO_PORTE_PCTL_R =(GPIO_PORTE_PCTL_R&0xFFFFFF00)+ 0x00000011;      	//config PCTL reg to work as UART
 	}
 }
+///////////////////////////////////////////////////
+
+///////////////////////////////////read and write////////////////////////
+int UART_Read(int UART_no)
+{
+	if(UART_no == 0)
+	{
+		while( (UART0_FR_R&0x10) != 0){}
+		return UART0_DR_R&0xff;
+	}	
+	else if(UART_no == 1)
+	{
+		while( (UART1_FR_R&0x10) != 0);
+		return UART1_DR_R;	
+	}
+	else if(UART_no == 2)
+	{
+		while( (UART2_FR_R&0x10) != 0);
+		return UART2_DR_R;
+	}
+	else if(UART_no == 3)
+	{
+		while( (UART3_FR_R&0x10) != 0);
+		return UART3_DR_R;
+	}
+	else if(UART_no == 4)
+	{
+		while( (UART4_FR_R&0x10) != 0);
+		return UART4_DR_R;
+	}
+	else if(UART_no == 5)
+	{
+		while( (UART5_FR_R&0x10) != 0);
+		return UART5_DR_R;
+	}
+	else if(UART_no == 6)
+	{
+		while( (UART6_FR_R&0x10) != 0);
+		return UART6_DR_R;
+	}
+	else if(UART_no == 7)
+	{
+		while( (UART7_FR_R&0x10) != 0);
+		return UART7_DR_R;	
+	}
+	return -1;
+}
+
+void UART_write(int UART_no, uint8_t data)
+{
+	if(UART_no == 0)
+	{
+		while((UART0_FR_R&0x20)!=0);
+		UART0_DR_R = data;
+	}
+	else if(UART_no == 1)
+	{
+		while((UART1_FR_R&UART_FR_TXFF) != 0){}
+		UART1_DR_R = data;
+	}
+	else if(UART_no == 2)
+	{
+		while((UART2_FR_R&0x20)!=0);
+		UART2_DR_R = data;
+	}
+	else if(UART_no == 3)
+	{
+		while((UART3_FR_R&0x20)!=0);
+		UART3_DR_R = data;
+	}
+	else if(UART_no == 4)
+	{
+		while((UART4_FR_R&0x20)!=0);
+		UART4_DR_R = data;
+	}	
+	else if(UART_no == 5)
+	{
+		while((UART5_FR_R&0x20)!=0);
+		UART5_DR_R = data;
+	}
+	else if(UART_no == 6)
+	{
+		while((UART6_FR_R&0x20)!=0);
+		UART6_DR_R = data;
+	}
+	else if(UART_no == 7)
+	{
+		while((UART7_FR_R&0x20)!=0){}
+		UART7_DR_R = data;	
+	}
+}
 
 
 
